@@ -1,0 +1,33 @@
+{
+  "name": "fluxfmcrawler",
+  "version": "1.0.0",
+  "description": "`npm run compileWatch`",
+  "main": "index.js",
+  "scripts": {
+    "clean": "rm -rf build",
+    "compile": "tsc -p . && cp package.json ./build/",
+    "compileWatch": "tsc -w -p .",
+    "run": "node build/index.js",
+    "wt:deploy": "npm run compile && npm run wt:wt:updateTask",
+    "wt:deployFresh": "npm run compile && npm run wt:clean && npm run wt:createTask && npm run wt:createCron",
+    "wt:createTask": "wt create -b ./build/index.js --name fluxfmcrawler",
+    "wt:createCron": "wt cron create -b --schedule '2-59/1 * * * *' ./build/index.js --tz Europe/Berlin --name fluxfmcrawler",
+    "wt:updateTask": "wt update fluxfmcrawler ./build/index.js && wt cron upate",
+    "wt:clean": "wt cron rm fluxfmcrawler && wt rm fluxfmcrawler",
+    "wt:history": "wt cron history fluxfmcrawler",
+    "wt:serve-local": "npm run clean && npm run compile && wt serve --storage-file ./wt-local/storage.json ./build/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/node": "^12.7.11",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^2.6.9",
+    "moment": "^2.24.0",
+    "webtask-storage-async": "0.0.4"
+  }
+}

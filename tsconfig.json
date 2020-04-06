@@ -1,0 +1,24 @@
+{
+    "include": [
+      "src/**/*"
+    ],
+    "compilerOptions": {
+      "lib": [
+        "es6", "es2015", "es2016"
+      ],
+      "types": [
+        "node"
+      ],
+      "target": "es6",
+      "pretty": true,
+      "module": "commonjs",
+      "resolveJsonModule": true,
+      "esModuleInterop": true,
+      "outDir": "./build",
+      "moduleResolution": "node",
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "allowSyntheticDefaultImports": true,
+      "sourceMap": true
+    }
+  }
