@@ -3,3 +3,4 @@ build
 secrets*
 .idea
 wt-local
+*.log
